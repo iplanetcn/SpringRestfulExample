@@ -1,21 +1,18 @@
 package com.phenix.springrestful.entity;
 
 /**
- * @author john
- * @version 1.0
- * @date 2015-12-25 10:20
+ * Created by john on 1/7/16.
  */
-public class User {
+public class LoginRequest {
     private String username;
     private String password;
 
-    public User() {
+    public LoginRequest() {
     }
 
-    public User(String username, String password) {
+    public LoginRequest(String username, String password) {
         this.username = username;
         this.password = password;
-
     }
 
     public String getUsername() {
