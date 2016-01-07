@@ -1,15 +1,16 @@
 package com.phenix.springrestful.domain;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * Created by john on 1/7/16.
  */
 @Entity
 @Table(name = "user")
-public class User {
+public class User implements Serializable{
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @Column(name = "name")

@@ -12,10 +12,16 @@ import java.util.*;
 public class EmployeeController {
 	private static final Logger logger = LoggerFactory.getLogger(EmployeeController.class);
 
+	public static final String DUMMY_EMP = "/rest/emp/dummy";
+	public static final String GET_EMP = "/rest/emp/{id}";
+	public static final String GET_ALL_EMP = "/rest/emps";
+	public static final String CREATE_EMP = "/rest/emp/create";
+	public static final String DELETE_EMP = "/rest/emp/delete/{id}";
+
 	//Map to store employees, ideally we should use database
 	Map<Integer, Employee> empData = new HashMap<Integer, Employee>();
 
-	@RequestMapping(value = EmpRestURIConstants.DUMMY_EMP, method = RequestMethod.GET)
+	@RequestMapping(value = DUMMY_EMP, method = RequestMethod.GET)
 	public @ResponseBody
 	Employee getDummyEmployee() {
 		logger.info("Start getDummyEmployee");
@@ -27,14 +33,14 @@ public class EmployeeController {
 		return emp;
 	}
 
-	@RequestMapping(value = EmpRestURIConstants.GET_EMP, method = RequestMethod.GET)
+	@RequestMapping(value = GET_EMP, method = RequestMethod.GET)
 	public @ResponseBody Employee getEmployee(@PathVariable("id") int empId) {
 		logger.info("Start getEmployee. ID="+empId);
 
 		return empData.get(empId);
 	}
 
-	@RequestMapping(value = EmpRestURIConstants.GET_ALL_EMP, method = RequestMethod.GET)
+	@RequestMapping(value = GET_ALL_EMP, method = RequestMethod.GET)
 	public @ResponseBody
 	List<Employee> getAllEmployees() {
 		logger.info("Start getAllEmployees.");
@@ -46,7 +52,7 @@ public class EmployeeController {
 		return emps;
 	}
 
-	@RequestMapping(value = EmpRestURIConstants.CREATE_EMP, method = RequestMethod.POST)
+	@RequestMapping(value = CREATE_EMP, method = RequestMethod.POST)
 	public @ResponseBody Employee createEmployee(@RequestBody Employee emp) {
 		logger.info("Start createEmployee.");
 		emp.setCreatedDate(new Date());
@@ -54,7 +60,7 @@ public class EmployeeController {
 		return emp;
 	}
 
-	@RequestMapping(value = EmpRestURIConstants.DELETE_EMP, method = RequestMethod.PUT)
+	@RequestMapping(value = DELETE_EMP, method = RequestMethod.PUT)
 	public @ResponseBody Employee deleteEmployee(@PathVariable("id") int empId) {
 		logger.info("Start deleteEmployee.");
 		Employee emp = empData.get(empId);

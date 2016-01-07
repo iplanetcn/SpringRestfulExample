@@ -6,25 +6,61 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-/**
- * Created by john on 1/7/16.
- */
+import java.util.List;
+
 @Service
 public class AccountServiceImpl implements AccountService {
     @Autowired
     private AccountDao accountDao;
 
-
     @Override
-    @Transactional
-    public void register(Account account) {
-        accountDao.register(account);
+    @Transactional(readOnly = true)
+    public boolean isExists(Account account) {
+        List<Account> accounts = accountDao.getAllAccounts();
+        if (accounts.size() > 0) {
+            for (Account temp : accounts) {
+                if (temp.getUsername().equals(account.getUsername())) {
+                    return true;
+                }
+            }
+            return false;
+        } else {
+            return false;
+        }
     }
 
     @Override
     @Transactional
-    public boolean login(String username,String password) {
-        return accountDao.login(username,password);
+    public boolean register(Account account) {
+        if (isExists(account)) {
+            return false;
+        } else {
+            accountDao.createAccount(account);
+            return true;
+        }
     }
 
+    @Override
+    @Transactional
+    public boolean login(Account account) {
+        if (!isExists(account)) {
+            return false;
+        }
+
+        List<Account> accounts = accountDao.getAllAccounts();
+        for (Account temp : accounts) {
+            if (temp.getUsername().equals(account.getUsername())
+                    && temp.getPassword().equals(account.getPassword())) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    @Override
+    @Transactional
+    public boolean alterPassword(Account account, String newPassword) {
+        return false;
+    }
 }
