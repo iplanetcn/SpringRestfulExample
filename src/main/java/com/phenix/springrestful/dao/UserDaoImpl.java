@@ -1,9 +1,9 @@
 package com.phenix.springrestful.dao;
 
-import com.phenix.springrestful.domain.User;
-import org.hibernate.SessionFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
+        import com.phenix.springrestful.domain.User;
+        import org.hibernate.SessionFactory;
+        import org.springframework.beans.factory.annotation.Autowired;
+        import org.springframework.stereotype.Repository;
 
 /**
  * Created by john on 1/7/16.
