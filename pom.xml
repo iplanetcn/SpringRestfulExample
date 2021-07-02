@@ -13,7 +13,7 @@
         <org.slf4j-version>1.7.5</org.slf4j-version>
         <jackson.databind-version>2.10.4</jackson.databind-version>
         <spring.version>5.2.6.RELEASE</spring.version>
-        <spring-security.version>5.3.2.RELEASE</spring-security.version>
+        <spring-security.version>5.3.10.RELEASE</spring-security.version>
 
     </properties>
 
